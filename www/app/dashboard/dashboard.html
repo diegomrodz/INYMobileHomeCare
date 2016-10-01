@@ -1,0 +1,220 @@
+<style scope>
+    #patientImage {
+        display: inline-block;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 5px white solid;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    #patientImage.angry {
+        border-color: red;
+    }
+    
+    #patientImage.anxious {
+        border-color: purple;
+    }
+    
+    #patientImage.satisfied {
+        border-color: green;
+    }
+    
+    #patientImage.unconfortable {
+        border-color: yellow;
+    }
+
+    #patientImage.sad {
+        border-color: blue;
+    }
+
+    .toolbar-medium div {
+        padding: 0px !important;
+    }
+
+    .item {
+        border: 0px;
+    }
+
+    .panel-info {
+        font-size: 13px !important;
+    }
+
+    .panel-data {
+        font-size: 15px !important;
+        padding-left: 3px;
+    }
+
+    .panel-data.lowest {
+        color: green;
+    }
+    
+    .panel-data.low {
+        color: yellow;
+    }
+    
+    .panel-data.high {
+        color: orange;
+    }
+
+    .panel-data.highest {
+        color: red;
+    }
+
+</style>
+
+<ion-view view-title="">
+
+    <!--right button on navigation bar-->
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons> 
+    <!--end right button on navigation bar-->
+
+    <md-toolbar class="bar-subheader md-medium-tall md-primary toolbar-medium">
+        <div>
+            <img id="patientImage" class="sad" style="background-image: url('http://mobiledentalhs.com/yahoo_site_admin/assets/images/Mom_Brochure-_Old_Lady_Smiling.258100838_std.jpg');">
+        </div>
+    </md-toolbar>
+
+    <ion-content id="dashboard-content">
+        <div style="padding: 20px 0px;"></div>
+
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab ng-repeat="patient in patients" label="{{ patient.name }}">
+                <md-content id="social-profile-content" class="md-padding">
+                    <md-subheader class="md-warn">Informações</md-subheader>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Nome
+                        </div>
+                        <div class="col-66 panel-data">{{ patient.name }}</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Idade
+                        </div>
+                        <div class="col-66 panel-data">66 anos</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Resumo Diagnóstico
+                        </div>
+                        <div class="col-66 panel-data">Cras eget volutpat velit. Morbi cursus mollis elit, quis convallis libero viverra quis. Vestibulum sed tortor eu neque maximus porta quis nec dolor.</div>
+                    </div>
+
+
+                    <md-subheader class="md-warn">Notificações</md-subheader>
+
+                    <div class="list">
+
+                      <a ng-repeat="notification in patient.notifications" class="item item-icon-left item-icon-right" href="#">
+                        <i class="icon ion-chatbubble-working"></i>
+                        {{ notification.option.text }}
+                      
+                        <span class="item-note">
+                            8 ocorrências
+                        </span>
+                      </a>
+
+                    </div>
+
+                    <md-subheader class="md-warn">Grau de Dependência</md-subheader>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Estado Mental
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.mental_health_scale)}}">
+                            {{ patient.mental_health }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Oxigenação
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.oxygenation_scale)}}">
+                            {{ patient.oxygenation }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Sinais Vitais
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.vital_sign_scale)}}">
+                            {{ patient.vital_sign }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Motilidade
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.motility_scale)}}">
+                            {{ patient.motility }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Deambulação
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.movimentation_scale)}}">
+                            {{ patient.movimentation }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Alimentação
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.alimentation_scale)}}">
+                            {{ patient.alimentation }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Cuidado Corporal
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.body_care_scale)}}">
+                            {{ patient.body_care }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Eliminação
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.evacuation_scale)}}">
+                            {{ patient.evacuation }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-33 panel-info">
+                            Terapêutica
+                        </div>
+                        <div class="col-66 panel-data {{fugullinScaleState(patient.therapy_scale)}}">
+                            {{ patient.therapy }}
+                        </div>
+                    </div>
+
+                </md-content>
+          </md-tab>
+        </md-tabs>
+    </ion-content>
+
+    <div class="footer-fab-bar">
+        <a class="md-button md-accent md-fab fab-footer" aria-label="Add">
+            <i class="ion ion-chatbubble-working"></i>
+        </a>
+    </div>
+
+</ion-view>

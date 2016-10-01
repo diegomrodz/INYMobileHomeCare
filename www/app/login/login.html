@@ -1,0 +1,40 @@
+<style scoped>
+    #social-login div.scroll {
+        padding-top: 22%;
+    }
+    #social-login form.fakeLogin-form {
+        margin-top: 0;
+    }
+</style>
+
+
+<ion-view title="Sign In">
+    <!--left button on navigation bar-->
+    <!--end left button on navigation bar-->
+
+    <!--login content section-->
+    <ion-content id="social-login" class="bg-white">
+        <!--fake login form section-->
+        <form class="fakeLogin-form">
+            <div>
+                <img src="img/app_icon.png"/>
+            </div>
+            <div class="sub-header">Conectar-se ao I Need You</div>
+
+            <div id="fakeLogin">
+                <md-input-container md-no-float="">
+                    <input ng-model="user.email" class="user-name" placeholder="Email">
+                </md-input-container>
+                <hr/>
+                <md-input-container md-no-float="">
+                    <input ng-model="user.password" class="user-password" type="password" placeholder="Senha">
+                </md-input-container>
+            </div>
+            <div>
+                <a ng-click="login()" class="md-raised social-button md-button md-default-theme material-background">
+                    Logar-se
+                </a>
+            </div>
+        </form> <!--end fake login form section-->
+    </ion-content><!--end login content section-->
+</ion-view>
